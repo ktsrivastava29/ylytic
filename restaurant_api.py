@@ -163,6 +163,29 @@ def save_plate():
         "message": message
     })
 
+@app.route('/data/customer', methods=['GET'])
+def customers_table():
+    json = request.get_json()
+    customers_table = json['customers']
+    numOfcustomer = json['numOfcustomer']
+    if((numOfcustomer%2==0) and (numOfcustomer<=12)):
+
+        return jsonify({
+        "success": "success",
+        "message": "allowed"
+        })
+
+@app.route('/data/time', methods=['GET'])
+def reservation_time():
+    
+    json = request.get_json()
+    time = json['time']
+    if((time >=17) and (time>=23)):
+
+        return jsonify({
+        "success": "success",
+        "message": "allowed"
+        })
 
 # POST
 @app.route('/data/drinks', methods=['POST'])
